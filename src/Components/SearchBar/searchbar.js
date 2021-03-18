@@ -13,10 +13,15 @@ const SearchBar = ( props ) => {
 
   }})
 
+  const handleChange = ( e ) => {
+    console.log(e.target.value);
+  }
+
   return(
     <form>
       <MuiThemeProvider theme = {theme}>
-      <TextField id = "filled-size-large" label = "Filter🔎" variant ="filled"
+      <TextField onChange = {handleChange}
+       id = "filled-size-large" label = "Filter🔎" variant ="filled"
        style = {{position: "absolute", left: "40px", marginTop: "5vh",
        width: "50vh"}} color = "secondary"
        />

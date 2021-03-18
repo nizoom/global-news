@@ -7,7 +7,6 @@ import Instructions from "./Components/Instructions/instructions"
 import SearchBar from "./Components/SearchBar/searchbar"
 import Map from "./Components/Map/map"
 
-
 const useStyles = makeStyles({
   typographyStyle: {
     color : "#DDE3EF"

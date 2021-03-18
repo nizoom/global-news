@@ -1,45 +1,76 @@
-import React, { Component } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { Component, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from "leaflet";
+import markerPic from "../../Images/global_news_small.png"
 //import Container from '@material-ui/core/Container';
 //import "../../../node_modules/leaflet/dist/leaflet.css"
 
+import NewsPull from ".././NewsPull/newspull"
+import  getPlaceName from "./coordinate"
+
+
+const AddMarker = ( props ) => {
+
+  const [position, setPosition] = useState(null)
+
+  useMapEvents({
+    click : (e) => {
+      setPosition(e.latlng)
+      const placeName =  getPlaceName(e.latlng)
+      
+
+
+    }
+  })
+
+  return position === null ? null : ( <Marker position = {position}
+    icon = {props.symbol}>
+    <Popup>
+      <NewsPull />
+    </Popup>
+     </Marker>)
+}
 
 class Map extends Component{
   constructor(props){
     super(props)
     this.state = {
-      currentPos : [0,0]
+      markers: [[19.4100819, -99.1630388]]
     }
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e){
-    this.setState({currentPos : e.latlng})
-  }
+  /*
+  addMarker = (e) => {
+      console.log("fired");
+      const {markers} = this.state;
+      markers.push(e.latlng)
+      this.setState({markers})
+    }  */
 
 
 
   render(){
   const  markerIcon = new L.icon({
-      iconUrl : require ("../../Images/global_news_small.png"),
-      iconSize : [35,45]
+      iconUrl : markerPic,
+      iconSize : [40,45],
     })
 
+
+
+
+
+
   return(
-    <MapContainer center={[51.505, -0.09]} zoom={2} scrollWheelZoom={false}
-      onClick = {this.handleClick}>
+    <MapContainer center={[51.505, -0.09]} zoom={2} scrollWheelZoom={false}>
+
       <TileLayer
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-    <Marker position={this.state.currentPos} icon = {markerIcon}>
-      <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup>
-      </Marker>
-    </MapContainer>
+        <AddMarker symbol = {markerIcon} >
 
+        </AddMarker>
+    </MapContainer>
     )
   }
 }
