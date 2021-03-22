@@ -10,7 +10,8 @@ const Instructions = ( ) => {
     typographyStyle: {
       //color : "linear-gradient(#EA7C14, #A43DE2)"
       color: "032536",
-      marginTop: "5vh"
+      marginTop: "5vh",
+      margin: "5px"
     }
   })
   const classes = useStyles();
@@ -27,8 +28,14 @@ const Instructions = ( ) => {
         </Typography>
 
       <Typography variant = "h5" className = {classes.typographyStyle}>
-        Use the Filter field  🔎 below to include a filter on the geographically
+        Use the Topic Filter field  🔎 below to include a filter on the geographically
         generated news.
+      </Typography>
+
+      <Typography variant = "h6" className = {classes.typographyStyle}>
+        Given our web search capabilities at this time it is possible that a geographically localized search
+        won't yield any articles. If this occurs please feel free to toggle off 🔘 the local feature in order
+        to broaden the search results to a country-wide level. You may still pair this with the Topic Filter.
       </Typography>
 
 

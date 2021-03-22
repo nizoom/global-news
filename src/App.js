@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import './App.css';
 import "fontsource-roboto"
 import Typography from "@material-ui/core/Typography"
@@ -14,7 +15,18 @@ const useStyles = makeStyles({
 })
 
 
+
+
 function App() {
+
+
+  const handleChange = ( e ) => {
+    let userInput = e.target.value;
+    setInput(userInput)
+  }
+
+  const [input, setInput] = useState("")
+
   const classes = useStyles()
   return (
     <div className="App">
@@ -24,8 +36,9 @@ function App() {
         </Typography>
         <Typography variant = "h4" className = {classes.typographyStyle}> A new way to keep up </Typography>
         <Instructions/>
-        <SearchBar/>
-        <Map/>
+        <SearchBar typed = {handleChange}/>
+        <Map topicFilter = {input}
+        />
 
     </div>
   );

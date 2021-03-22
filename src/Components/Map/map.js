@@ -1,62 +1,57 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from "leaflet";
 import markerPic from "../../Images/global_news_small.png"
 //import Container from '@material-ui/core/Container';
 //import "../../../node_modules/leaflet/dist/leaflet.css"
 
-import NewsPull from ".././NewsPull/newspull"
-import  getPlaceName from "./coordinate"
+import NewsPopup from ".././NewsDisplay/newspopup"
+import  getPlaceName from "./getplacename"
 
 
 const AddMarker = ( props ) => {
 
   const [position, setPosition] = useState(null)
 
+  const [articles, setArticles] = useState("")
+
+  const [metaData, setMetaData] = useState([])
+
+
   useMapEvents({
     click : (e) => {
       setPosition(e.latlng)
-      const placeName =  getPlaceName(e.latlng)
-      
+      //const placeName =  getPlaceName(e.latlng, props.userFilter)
+      getPlaceName(e.latlng, props.userFilter)
+        .then(response => {
+            const [allArticles, localityName, country, topic] = response;
+            console.log(allArticles);
+            setArticles(allArticles)
+            topic ? setMetaData(`${localityName}, ${country} and ${topic}`) :
+            setMetaData(`${localityName}, ${country}`)
 
+            //Index of returned array where the articles sit
+          });
+        }
+      })
 
-    }
-  })
 
   return position === null ? null : ( <Marker position = {position}
     icon = {props.symbol}>
     <Popup>
-      <NewsPull />
+      <NewsPopup  dataForDisplay = {articles} metaData = {metaData}/>
     </Popup>
      </Marker>)
 }
 
-class Map extends Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      markers: [[19.4100819, -99.1630388]]
-    }
-  }
-
-  /*
-  addMarker = (e) => {
-      console.log("fired");
-      const {markers} = this.state;
-      markers.push(e.latlng)
-      this.setState({markers})
-    }  */
+const Map = ( props ) => {
 
 
 
-  render(){
   const  markerIcon = new L.icon({
       iconUrl : markerPic,
       iconSize : [40,45],
     })
-
-
-
 
 
 
@@ -67,11 +62,21 @@ class Map extends Component{
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-        <AddMarker symbol = {markerIcon} >
+        <AddMarker symbol = {markerIcon} userFilter = {props.topicFilter}>
 
         </AddMarker>
     </MapContainer>
     )
   }
-}
+
 export default Map;
+
+/*
+constructor(props){
+  super(props)
+  console.log(props.topicFilter);
+  this.state = {
+    markers: [[19.4100819, -99.1630388]],
+    userFilter : props.topicFilter,
+  }
+}  */
