@@ -1,21 +1,11 @@
 import React from "react";
 
-/*
-const parseForDisplay = () => {
-  console.log(props.dataForDisplay);
-
-  props.dataForDisplay.map(function(data, i){
-    return(
-    <div>
-      <ul> <li key = { i }> {data.title} </li> </ul>
-    </div>
-   )}
-  )*/
-
 const ArticleList = ( props ) => {
 
   return(
     <div>
+
+      <div name = "results_bar">
       {
         props.dataForDisplay.map(article => (
 
@@ -27,6 +17,7 @@ const ArticleList = ( props ) => {
 
           </div>
         ))}
+      </div>
     </div>
 
   )

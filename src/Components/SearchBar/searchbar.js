@@ -3,7 +3,6 @@ import { TextField } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import "./searchbar.css"
 
-
 const SearchBar = ( props ) => {
 
   const theme = createMuiTheme({

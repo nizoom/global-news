@@ -1,5 +1,5 @@
 import getNews from "./getNews"
-export default async function getPlaceName( latlng, userFilter ){
+export default async function getPlaceName( latlng, userFilter, localityFeatureStatus ){
   const LAT = latlng.lat
   const LNG = latlng.lng
   let localityName = ""
@@ -42,7 +42,11 @@ export default async function getPlaceName( latlng, userFilter ){
       })
     .catch(err => console.warn(err.message));
 
+    if(localityFeatureStatus){
+      return getNews(localityName, countryName, userFilter)
+    } else {
+      return getNews("",countryName, userFilter);
+    }
 
-     return getNews( localityName, countryName, userFilter )
     //console.log(localityName, countryName, userFilter);
 }

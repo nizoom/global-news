@@ -22,13 +22,14 @@ const AddMarker = ( props ) => {
     click : (e) => {
       setPosition(e.latlng)
       //const placeName =  getPlaceName(e.latlng, props.userFilter)
-      getPlaceName(e.latlng, props.userFilter)
+      getPlaceName(e.latlng, props.userFilter, props.localityStatus)
         .then(response => {
             const [allArticles, localityName, country, topic] = response;
             console.log(allArticles);
+            console.log(localityName, country, topic);
             setArticles(allArticles)
-            topic ? setMetaData(`${localityName}, ${country} and ${topic}`) :
-            setMetaData(`${localityName}, ${country}`)
+            topic ? setMetaData(`${localityName} ${country} and ${topic}`) :
+            setMetaData(`${localityName} ${country}`)
 
             //Index of returned array where the articles sit
           });
@@ -62,7 +63,8 @@ const Map = ( props ) => {
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-        <AddMarker symbol = {markerIcon} userFilter = {props.topicFilter}>
+        <AddMarker symbol = {markerIcon} userFilter = {props.topicFilter}
+        localityStatus = {props.localityStatus}>
 
         </AddMarker>
     </MapContainer>

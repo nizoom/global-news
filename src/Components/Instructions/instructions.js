@@ -34,7 +34,7 @@ const Instructions = ( ) => {
 
       <Typography variant = "h6" className = {classes.typographyStyle}>
         Given our web search capabilities at this time it is possible that a geographically localized search
-        won't yield any articles. If this occurs please feel free to toggle off 🔘 the local feature in order
+        won't yield any articles. If this occurs please feel free to toggle off ✅ the local feature in order
         to broaden the search results to a country-wide level. You may still pair this with the Topic Filter.
       </Typography>
 

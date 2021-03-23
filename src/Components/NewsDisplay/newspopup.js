@@ -7,7 +7,7 @@ const NewsPopup = ( props ) => {
 
   return(
     <div>
-    { props.dataForDisplay > 0 ?
+    { props.dataForDisplay.length > 0 ?
       <div>
         <p> Here is the news from {props.metaData}: </p>
 

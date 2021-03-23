@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import Instructions from "./Components/Instructions/instructions"
 import SearchBar from "./Components/SearchBar/searchbar"
 import Map from "./Components/Map/map"
+import LocalityCheckBox from "./Components/LocalityCheckBox/checkbox"
 
 const useStyles = makeStyles({
   typographyStyle: {
@@ -27,6 +28,13 @@ function App() {
 
   const [input, setInput] = useState("")
 
+  const [checked, setChecked] = useState(true)
+
+  const handleBoxClick = (e) => {
+    console.log("fired");
+    setChecked(e.target.checked)
+  }
+
   const classes = useStyles()
   return (
     <div className="App">
@@ -37,7 +45,8 @@ function App() {
         <Typography variant = "h4" className = {classes.typographyStyle}> A new way to keep up </Typography>
         <Instructions/>
         <SearchBar typed = {handleChange}/>
-        <Map topicFilter = {input}
+        <LocalityCheckBox boxClicked = {handleBoxClick} status = {checked}/>
+        <Map topicFilter = {input} localityStatus = {checked}
         />
 
     </div>
