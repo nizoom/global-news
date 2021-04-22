@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+body{
+  background-image:url("Images/background.jpg");
+  background-repeat: round;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
+}
+
+
+.leaflet-container{
+  margin-top: 15vh;
+  margin-bottom: 5vh;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 70vw;
+  height: 75vh;
+}
+
+@media (max-width: 600px){
+  .leaflet-container{
+    width: 95%;
+  }
+
+}

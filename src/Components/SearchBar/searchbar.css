@@ -1,0 +1,13 @@
+.textField__label{
+  color: white !important;
+}
+
+
+
+.searchbar input[type=text] {
+  border: 2px;
+  border-radius: 4px;
+  padding: 30px 10px;
+  color: #ECD7E4;
+  font-weight: bold;
+}
