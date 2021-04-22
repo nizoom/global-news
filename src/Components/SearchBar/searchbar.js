@@ -5,27 +5,29 @@ import "./searchbar.css"
 
 const SearchBar = ( props ) => {
 
+//Material UI styling
   const theme = createMuiTheme({
     overrides: {
       MuiFilledInput : { root : { backgroundColor : "#58434E"}},
-      MuiInputLabel : { root : { color : "#FAF2F6"}},
+      MuiInputLabel : { root : { color : "#FAF2F6"}}
+  }
+})
 
-  }})
 
-  /*
-  const handleChange = ( e ) => {
-    console.log(e.target.value);
-  }  */
+
 
 
 
   return(
-    <form>
+    <form style = {{textAlign : "center", marginTop : "5vh"}}>
       <MuiThemeProvider theme = {theme}>
-      <TextField onChange = {props.typed}
-       id = "filled-size-large" label = "Filter🔎" variant ="filled"
-       style = {{position: "absolute", left: "40px", marginTop: "5vh",
-       width: "50vh"}} color = "secondary"
+      {/* passes in function that tracks user input
+       to textField*/}
+      <TextField onChange = {props.typed} className = "searchbar"
+      id = "filled-size-large" label = "Filter🔎" variant ="filled"
+       style = {{width: "50vh", color: "white"}} color = "secondary" InputProps={{
+    className: theme.multilineColor
+  }}
        />
       </MuiThemeProvider>
     </form>
@@ -33,7 +35,3 @@ const SearchBar = ( props ) => {
 }
 
 export default SearchBar
-
-//position: "fixed", left: "40px", marginTop: "5vh", width: "50vh"
-
-//InputLabelProps = {{ className : textField__label }}

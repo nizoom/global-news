@@ -1,52 +1,27 @@
-import getNews from "./getNews"
-export default async function getPlaceName( latlng, userFilter, localityFeatureStatus ){
+
+export default async function getPlaceName(latlng, userFilter, localityFeatureStatus){ //waitToReturn
+
   const LAT = latlng.lat
   const LNG = latlng.lng
-  let localityName = ""
-  let countryName = "";
+  //const apiKey = "AIzaSyDgwqGtBnrgdxp38lz0ad8NLg3nN_-3LbU"// your google apikey
 
 
-  const apiKey = "AIzaSyDgwqGtBnrgdxp38lz0ad8NLg3nN_-3LbU"// your google apikey
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${LAT},${LNG}&key=${process.env.REACT_APP_G_KEY}`
 
-  let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${LAT},${LNG}&key=${apiKey}`
-  let successfulFetch = false;
-  await fetch(url)
-    .then(response => response.json() )
-    .then(data => {
-      let parts = data.results[0].address_components
-      parts.forEach( part => {
-        //LOCAL NAME
-        if(part.types.includes("locality") && !successfulFetch ){
-          if(part.long_name !== "Unnamed Road" && typeof(part.long_name)!= "number" ){
-            successfulFetch = true;
-            //console.log(part.long_name);
-            localityName = part.long_name
 
-          }
-        } if("administrative_area_level_1" && !successfulFetch){
-            if(part.long_name !== "Unnamed Road" && typeof(part.long_name)!= "number" ){
-            //console.log(part.long_name);
-            successfulFetch = true;
-            localityName = part.long_name;
-          }
-        } if (part.types.includes("country")){
-          //console.log(part.long_name);
-          countryName = part.long_name;
-        }
-        })
-      })
-      .then(result => {
-         let placeName = [localityName, countryName]
-         //console.log(placeName);
-         return placeName
-      })
-    .catch(err => console.warn(err.message));
 
-    if(localityFeatureStatus){
-      return getNews(localityName, countryName, userFilter)
-    } else {
-      return getNews("",countryName, userFilter);
+  const response = await fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    //console.log("callback from fetch");
+    // TODO: Implement scope slider to let user decide which to select
+    if(data.results.length === 0){
+      //console.log("NO RESULTS FROM GOOGLE API")
     }
+    return data.results
 
+  })
+
+    return response;
     //console.log(localityName, countryName, userFilter);
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Globalnews from './globalnews';
 import reportWebVitals from './reportWebVitals';
 //import "../node_modules/leaflet/dist/leaflet.css"
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Globalnews />
   </React.StrictMode>,
   document.getElementById('root')
 );

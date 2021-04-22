@@ -8,10 +8,10 @@ const Instructions = ( ) => {
 
   const useStyles = makeStyles({
     typographyStyle: {
-      //color : "linear-gradient(#EA7C14, #A43DE2)"
-      color: "032536",
+      color: "#DEF0ED",
       marginTop: "5vh",
-      margin: "5px"
+      margin: "5px",
+      fontWeight: "900"
     }
   })
   const classes = useStyles();
@@ -28,8 +28,9 @@ const Instructions = ( ) => {
         </Typography>
 
       <Typography variant = "h5" className = {classes.typographyStyle}>
-        Use the Topic Filter field  🔎 below to include a filter on the geographically
-        generated news.
+        Use the Topic Filter field  🔎 below before clicking the map
+        to include a filter on the geographically
+        generated news. This is an optional feature.
       </Typography>
 
       <Typography variant = "h6" className = {classes.typographyStyle}>
