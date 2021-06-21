@@ -10,7 +10,7 @@ To use the app please visit https://www.nissimram.com/#/globalnews
 
 After cloning this repo, run `npm install` to install all dependencies. Please note that in order for the app to get news you will need API keys for Google Cloud and Azure. These keys are used in two files. 1) `src/Components/Map/getNews.js` and 2) `src/Components/Map/getplacename.js`
 
-##To Visit App locally on your machine:
+## To Visit App locally on your machine:
 
  Make sure you're in the src folder and run `npm start`
  
