@@ -7,7 +7,7 @@ Global News was inspired by the convenience and subsequently narrowing format of
 
 To use the app please visit https://www.nissimram.com/#/globalnews
 
-Click on the map to see news from that part of the world. You can make you news national only by unchecking the "localize" checkbox. You can also add key word to futher filter your search.
+Click on the map to see news from that part of the world. You can make your news national only by unchecking the "localize" checkbox. You can also add a keyword to futher filter your search.
 
 # Installation and set up instructions
 
