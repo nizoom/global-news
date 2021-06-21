@@ -4,13 +4,10 @@ import {makeStyles} from "@material-ui/core/styles"
 
 const ArticleList = ( props ) => {
 
-  //console.log(props.articlesToDisplay);
-  //console.log(props.articlesToDisplay[0]);
 
   let readyToDisplay = false
-  //console.log(props.articlesToDisplay);
+  
   if(props.articlesToDisplay !== undefined){
-      //console.log("we got something");
       readyToDisplay = true;
 
   }
