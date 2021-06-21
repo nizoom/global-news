@@ -26,9 +26,10 @@ Another environmental variable used, and not available in this repo, is the url 
 
 This was a personal project to help grow my skills in web and software development. I wanted to become more familiar with React, learn about how to organize components and to get in the habit of sectioning off code for specific purposes. 
 
-It was also a good excerise in using new APIs and reading documentation to impliment the queries that I needed. One challenge was finding the right service for the job. There were many APIs to choose from and finding one that suited my purposes required many iterations of this app. Some had more relevant news results than others, as well as different limitations after deployment.
+It was also a good exercise in using new APIs and reading documentation to implement
+ the queries that I needed. One challenge was finding the right service for the job. There were many APIs to choose from and finding one that suited my purposes required many iterations of this app. Some had more relevant news results than others, as well as different limitations after deployment.
 
-Working with APIs was a good opportunity to get to know asynchronous javascript. Fetching and manipulating the returned data required researching and implimenting `async / await` functions. This is certainly a complicated topic and something I hope to continue honing in future projects.
+Working with APIs was a good opportunity to get to know asynchronous JavaScript. Fetching and manipulating the returned data required researching and implementing `async / await` functions. This is certainly a complicated topic and something I hope to continue honing in future projects.
 
 Please visit my blog to learn more about this project and my work: https://www.nissimram.com/#/Blog
 
