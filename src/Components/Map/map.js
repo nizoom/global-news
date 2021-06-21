@@ -17,7 +17,7 @@ const AddMarker = ( props ) => {
 
   useMapEvents({ // a hook from leaflet library
     click : (e) => {
-      //console.log("Map clicked");
+      //gets coordinates based on click 
       setPosition(e.latlng)
 
 
@@ -28,8 +28,7 @@ const AddMarker = ( props ) => {
         let articles = [];
         let country = ""
         let nonNationalName = ""
-        //console.log(response);
-        //console.log(response[0])
+      
 
         if(response.length === 0){ // If no results from google api
           //console.log("NO RESULTS FROM GOOGLE API")
@@ -46,7 +45,6 @@ const AddMarker = ( props ) => {
         // the name is based on google maps nested address categories/objects
         let addressComponents = response[0].address_components
 
-        //console.log(addressComponents);
 
         // Filter google maps results based on entries containing Country
         let countryResults = addressComponents.filter(component => component.types.includes("country"))
@@ -54,17 +52,18 @@ const AddMarker = ( props ) => {
         // Filter google maps results based on entries containing locality
 
         let localAreaResults = addressComponents.filter(component => component.types.includes("locality"))
+        
 
-
-        //console.log(localAreaResults.long_name);
         //this for each does the same as above but had to be adaptive because there could be
         //more than one administrative_area_ and the above function returned only one name
         //this for each pushes all names to the allLocalPlaceNames array
+        
+        // having all 3 attempts makes sure we have access to all place names
         let adminAreaResults = addressComponents.forEach(function(obj){
           let types = Object.values(obj.types).toString()
           if(types.includes("administrative_area_level")){
             //take long name
-            //console.log(obj.long_name);
+            
             allLocalPlaceNames.push(obj.long_name)
           }
         })
@@ -84,15 +83,6 @@ const AddMarker = ( props ) => {
 
 
 
-        //Next Steps: Merge longnames from locality and admin areas so that getNews is called with country
-        // and more specific name
-
-
-
-        //console.log(allLocalPlaceNames);
-        //console.log("------------");
-
-
         //in case the click is not recognized to be within country
         // such as a body of water
           if(countryResults.length === 0){
@@ -103,8 +93,7 @@ const AddMarker = ( props ) => {
 
           (async function() {
 
-            //console.log(country);
-            //console.log(nonNationalName);
+       
 
             const countryOrNonNationalName = await (country === "") ? nonNationalName : country
             if (nonNationalName.length > 0){
@@ -113,8 +102,7 @@ const AddMarker = ( props ) => {
               //countryOrNonNationalName
               //this blank str replaces locality name further down if there is no locality name
             }
-            //console.log(countryOrNonNationalName);
-            //console.log(allLocalPlaceNames);
+          
 
             //Looping through placeNames to get articles from getNews function
             for(let x = 0; x < allLocalPlaceNames.length; x++ ){
@@ -133,18 +121,15 @@ const AddMarker = ( props ) => {
 
               await getNews(localityName, countryOrNonNationalName, props.userFilter, props.localityStatus)
               .then(response => {
-                //console.log(localityName, countryOrNonNationalName, props.userFilter, props.localityStatus);
-
-                //console.log(response);
+                
                 if(response[0].length > 0){ // if news found
-                  //console.log(response[1]);
+                  
                   let successfulPlaceName = response[1]
                   articles.push(response[0])
                   x+=500 // stops loop at next iteration
-                  //console.log("Completed");
-                  //console.log(articles);
+                  
                   if(nonNationalName.length > 0){ // passing data for body of water
-                    // or nonnational click. Here country represents
+                    // or nonnational click. 
                     props.dataToMap([articles, countryOrNonNationalName, props.userFilter])
                   } else {
                     //typical conutry click
@@ -192,8 +177,6 @@ const Map = ( props ) => {
 
 //Brings data from marker level to map level and ultimately to app.js / root level
   const bringDataToTop = ( data ) => {
-    //console.log("The data is in the Map");
-    //console.log(data);
     props.dataBackToTop( data )
   }
 
