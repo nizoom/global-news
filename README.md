@@ -10,7 +10,7 @@ To use the app please visit https://www.nissimram.com/#/globalnews
 
 After cloning this repo, run `npm install` to install all dependencies. Please note that in order for the app to get news you will need API keys for Google Cloud and Azure. These keys are used in two files. 1) `src/Components/Map/getNews.js` and 2) `src/Components/Map/getplacename.js`
 
-The last environmental variable used is the url for the Bing News query. This is used in file 1) ^ 
+Another environmental variable used, and not available in this repo, is the url for the Bing News query. This is used in file 1) ^ 
 
 `https://api.bing.microsoft.com/v7.0/news/search/` 
 
