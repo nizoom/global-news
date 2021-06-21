@@ -19,6 +19,14 @@ After cloning this repo, run `npm install` to install all dependencies. Please n
 `localhost:3000`
 
 
+# Reflection
 
+This was a personal project to help grow my skills in web and software development. I wanted to become more familiar with React, learn about how to organize components and section off code for specific purposes. 
+
+It was also a good excerise in using new APIs and reading documentation to impliment to the queries that I needed. One challenge was finding the right service for the job. There were many APIs to choose from and finding one that suited my purposes required many iterations of this app. 
+
+Working with APIs was a good opportunity to get to know asynchronous javascript. Fetching and manipulating the returned data required researching and implimenting `async / await` functions. This certainly a complicated topic and something I hope to continue honing in future projects.
+
+Please visit my blog to learn more about this project and my work: https://www.nissimram.com/#/Blog
 
 
